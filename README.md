@@ -9,6 +9,13 @@ Batch AI is an Azure service that allows users to easily experiment and train th
 
 In this tutorial we demonstrate how to create a serverless deep-learning platform whereby an ML practitioner can submit deep-learning jobs (specifically PyTorch) without having to worrying about the underlying infrastructure (GPU, inifiband, etc).
 
+## Prerequisites
+
+* An Azure subscription - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* Installed the Azure CLI 2.0 with version 0.3 or higher of the batchai module - see these [instructions](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
+* Azure storage account - Typically we would expect that a storage account and blob container exist with the data stored (see below). If a storage account with data does not yet exist then see How to create an Azure storage account
+
+
 ## Azure Batch AI Fundamentals
 Under an Azure Resource Group, the Azure Batch account contains the following resources:
 
@@ -19,9 +26,9 @@ Under an Azure Resource Group, the Azure Batch account contains the following re
 5. Experiments
 6. Jobs
 
-The following image below shows an example resource hierarchy:
+The image below shows a recommended approach for devising the resource hierarchy. The Batch AI workspace collects related training jobs under an experiment, and organizes all related Batch AI resources (clusters, file servers, experiments, jobs). The workspace helps to separate work belonging to different groups (e.g. Dev/Test/Production). For example, you might have a dev and a test workspace. You probably need only a limited number of workspaces per subscription. 
+Experiment - A collection of related jobs that can be queried and managed together. For example, use an experiment to group all jobs that are performed as part of a hyper-parameter tuning sweep. 
 
 ![](img/batchai_hierachy.png?raw=true "Batch AI Resource Hierarchy")
 
-The workspace collects related training jobs under an experiment, and organizes all related Batch AI resources (clusters, file servers, experiments, jobs). The workspace helps to separate work belonging to different groups (e.g. Dev/Test/Production). For example, you might have a dev and a test workspace. You probably need only a limited number of workspaces per subscription. 
-Experiment - A collection of related jobs that can be queried and managed together. For example, use an experiment to group all jobs that are performed as part of a hyper-parameter tuning sweep. 
+
