@@ -31,3 +31,32 @@ Experiment - A collection of related jobs that can be queried and managed togeth
 ![](img/batchai_hierachy.png?raw=true "Batch AI Resource Hierarchy")
 
 Whilst NFS and local storage on the compute nodes will be the optimized method for deep-learning training due to data locality, often unstructured data (images, video, sound, text) is stored in a data lake (Azure Blob storage). Typically the extra performance from NFS/local storage is not enough to compensate for the cost of data movement from the data lake to NFS/local storage.
+
+Therefore, a very high level architecture is:
+
+![](img/batchai_flow.png?raw=true "Batch AI architecture")
+
+The workflow is as follows:
+
+1. Unstructured data is ingested into Azure blob store. We recommend using the follow directory structure:
+```
+landing
+│   README.md
+│   file001.txt    
+│
+└───folder1
+│   │   file011.txt
+│   │   file012.txt
+│   │
+│   └───subfolder1
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
+  
+
+2. 
