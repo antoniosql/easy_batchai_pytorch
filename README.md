@@ -13,7 +13,7 @@ In this tutorial we demonstrate how to create a serverless deep-learning platfor
 
 * __An Azure subscription__ - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 * __Installed the Azure CLI 2.0 with version 0.3 or higher of the batchai module__ - see these [instructions](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
-* __Azure storage account__ - Typically we would expect that a storage account and blob container already exist with the data stored (see below). If a storage account with data does not yet exist then see How to create an Azure storage account
+* __Azure storage account__ - Typically we would expect that a storage account and blob container already exist with the data stored (see below). If a storage account with data does not yet exist then see [How to create an Azure storage account](https://docs.microsoft.com/en-gb/azure/storage/common/storage-create-storage-account)
 
 ## Azure Batch AI Fundamentals
 Under an Azure Resource Group, the Azure Batch account contains the following resources:
