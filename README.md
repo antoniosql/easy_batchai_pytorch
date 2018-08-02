@@ -10,7 +10,7 @@ Batch AI is an Azure service that allows users to easily experiment and train th
 In this tutorial we demonstrate how to create a serverless deep-learning platform whereby an ML practitioner can submit deep-learning jobs (specifically PyTorch) without having to worrying about the underlying infrastructure (GPU, inifiband, etc).
 
 ## Azure Batch AI Fundamentals
-Under an Azure Resource Group, the Azure Batch API has the following resources:
+Under an Azure Resource Group, the Azure Batch account contains the following resources:
 
 1. Workspaces
 2. Experiments
@@ -19,7 +19,9 @@ Under an Azure Resource Group, the Azure Batch API has the following resources:
 5. Experiments
 6. Jobs
 
-The following image below shows an example resource hierarchy. 
+The following image below shows an example resource hierarchy:
+
+![img1]("img/batchai_hierarchy.png")
 
 The workspace collects related training jobs under an experiment, and organizes all related Batch AI resources (clusters, file servers, experiments, jobs). The workspace helps to separate work belonging to different groups (e.g. Dev/Test/Production). For example, you might have a dev and a test workspace. You probably need only a limited number of workspaces per subscription. 
 Experiment - A collection of related jobs that can be queried and managed together. For example, use an experiment to group all jobs that are performed as part of a hyper-parameter tuning sweep. 
