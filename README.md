@@ -11,10 +11,9 @@ In this tutorial we demonstrate how to create a serverless deep-learning platfor
 
 ## Prerequisites
 
-* An Azure subscription - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-* Installed the Azure CLI 2.0 with version 0.3 or higher of the batchai module - see these [instructions](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
-* Azure storage account - Typically we would expect that a storage account and blob container exist with the data stored (see below). If a storage account with data does not yet exist then see How to create an Azure storage account
-
+* __An Azure subscription__ - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* __Installed the Azure CLI 2.0 with version 0.3 or higher of the batchai module__ - see these [instructions](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
+* __Azure storage account__ - Typically we would expect that a storage account and blob container already exist with the data stored (see below). If a storage account with data does not yet exist then see How to create an Azure storage account
 
 ## Azure Batch AI Fundamentals
 Under an Azure Resource Group, the Azure Batch account contains the following resources:
@@ -31,4 +30,4 @@ Experiment - A collection of related jobs that can be queried and managed togeth
 
 ![](img/batchai_hierachy.png?raw=true "Batch AI Resource Hierarchy")
 
-
+Whilst NFS and local storage on the compute nodes will be the optimized method for deep-learning training due to data locality, often unstructured data (images, video, sound, text) is stored in a data lake (Azure Blob storage). Typically the extra performance from NFS/local storage is not enough to compensate for the cost of data movement from the data lake to NFS/local storage.
