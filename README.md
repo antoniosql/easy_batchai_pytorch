@@ -21,7 +21,7 @@ Under an Azure Resource Group, the Azure Batch account contains the following re
 
 The following image below shows an example resource hierarchy:
 
-[https://github.com/samuel100/easy_batchai_pytorch/blob/master/img/batchai_hierarchy.png]
+![img00]("https://github.com/samuel100/easy_batchai_pytorch/blob/master/img/batchai_hierachy.png")
 
 The workspace collects related training jobs under an experiment, and organizes all related Batch AI resources (clusters, file servers, experiments, jobs). The workspace helps to separate work belonging to different groups (e.g. Dev/Test/Production). For example, you might have a dev and a test workspace. You probably need only a limited number of workspaces per subscription. 
 Experiment - A collection of related jobs that can be queried and managed together. For example, use an experiment to group all jobs that are performed as part of a hyper-parameter tuning sweep. 
