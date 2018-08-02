@@ -1,0 +1,14 @@
+{
+  "clusterName": "ENTER_THE_CLUSTER_NAME",
+  "persistCluster": "False",
+  "resourceGroup": "ENTER_RESOURCE_GROUP_NAME",
+  "storageAccount": "ENTER_STORAGE_ACCOUNT",
+  "blobContainerName": "ENTER_NAME_THAT_CONTAINS_THE_DATA",
+  "experimentName": "ENTER_EXPERIMENT_NAME",
+  "workspaceName": "dev",
+  "sourceScript": "PyTorchTransferLearning.py",
+  "sourceScriptFileShareDirectory": "scripts/pytorch",
+  "monitorFileName": "stdout-0.txt",
+  "logFileShareName": "logs",
+  "maxNodes": 1
+}

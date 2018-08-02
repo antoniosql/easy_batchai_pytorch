@@ -1,0 +1,16 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/BatchAI/master/schemas/2018-05-01/job.json",
+    "properties": {
+      "nodeCount": 1,
+      "pyTorchSettings": {
+        "pythonScriptFilePath": "$AZ_BATCHAI_MOUNT_ROOT/logs/scripts/pytorch/PyTorchTransferLearning.py",
+        "commandLineArgs": "--input_dir $AZ_BATCHAI_MOUNT_ROOT/datalake/hymenoptera_data --epochs 25 --output_dir $AZ_BATCHAI_MOUNT_ROOT/datalake/models"
+      },
+        "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/logs",
+        "containerSettings": {
+            "imageSourceRegistry": {
+                "image": "batchaitraining/pytorch:0.4.0-cp36-cuda9-cudnn7"
+            }
+        }
+    }
+}
