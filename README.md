@@ -47,7 +47,7 @@ In this tutorial we focus on the setting up the Deep-Learning Job Service and ho
 
 ## Documentation and code
 
-Often organisations have a dedicated team responsible for implementing cloud based services that are then consumed by internal customers. Therefore, in order to tailor the documentation to the right persona we have split the documentation into:
+Often organisations have a dedicated team responsible for implementing cloud based services that are then consumed by internal customers. Therefore, in order to tailor the documentation to the right persona we have split it into:
 
 * [Cloud Administrator Guide](00_doc/cloud_admin_doc.md): Setting up a deep-learning job service with Azure Batch AI
 * [ML Practitioner Guide](00_doc/ml_practitioner_doc.md): Submitting deep-learning jobs
