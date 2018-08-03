@@ -1,62 +1,56 @@
-# Creating a serverless deep-learning platform with Azure Batch AI
-Batch AI is an Azure service that allows users to easily experiment and train their deep learning and AI models in parallel at scale. The advantages of Azure Batch AI include:
+# A deep-learning job service with Azure Batch AI
 
-- __Easy deployment and flexibility:__ Focus on your workload, not your infrastructure by leaving resource provisioning and management to Batch AI. The service will deploy virtual machines, containers, and connect your shared storage and configure SSK for login. Batch AI Training provides a flexible programming model and SDK so you can easily integrate your own pipeline and workflow. Because Batch AI handles deployment, it’s easy to iterate on your networks and hyper-parameters.
+An ML practitioner often starts coding a new deep-learning project locally on a laptop or workstation using their favourite frameworks (PyTorch, TensorFlow, CNTK, etc) and tools (PyCharm, VS Code/Studio, Jupyter). However, training deep-learning models is a compute intensive task that can take a long time on a CPU machine. This bottleneck often frustrates the ML practitioner from iterating quickly on the network architecture and hyper-parameters. In order to achieve reasonable training times for deep-learning networks a GPU machine - and for very deep networks - a cluster of GPU machines is required. With this in mind the ML practitioner could use an on-prem/cloud GPU VM to scale the job, however:
 
-- __High performance training:__ Batch AI works with all Microsoft Azure VM families, including the latest NVIDIA GPU’s connected with InfiniBand. This gives you the ability to scale the compute resources to whatever your models and training data require. The same powerful infrastructure Microsoft uses for its AI development is now available to you, on demand.
+* the VM needs to be set-up and configured with the appropriate tools and frameworks
+* a single VM does not scale to multiple users that are each submitting compute intensive tasks
 
-- __Supports any framework:__ Use any AI framework or libraries. Azure Batch AI has deep support for CNTK, TensorFlow, Chainer, and more. Or bring your code in a Docker Container and we’ll handle the rest. Batch AI supports the Azure command line, Jupyter Notebooks, scripting the service using our Python library, and integrating workflows with the REST API and SDK for C#, Java and other languages. You can use the tooling you’re comfortable with.
+The purpose of this tutorial is to demonstrate how an ML practitioner can develop deep-learning code on their local machine and easily submit the code as a job to a cloud-based (Azure Batch AI) GPU service. The benefits of such a service are:
 
-In this tutorial we demonstrate how to create a serverless deep-learning platform whereby an ML practitioner can submit deep-learning jobs (specifically PyTorch) without having to worrying about the underlying infrastructure (GPU, inifiband, etc).
+* The ML practitioner does not have to concern themselves with the underlying infrastructure (GPU, infiniband, etc).
+* The service we construct using Azure Batch AI is virtually __serverless__ i.e. once a job is submitted the underlying service spins up the compute resource that is required, runs the job, and then spins down.
+* __Auto-scales__ with the number of jobs submitted.
+* Supports __any framework__ - Tensorflow, PyTorch, CNTK, Chainer and more.
+* Supports __distributed deep-learning__ (multi-node, multi-gpu) with Horovod.
+* Supports Azure low-priority VMs, which provide an 80% discount on the compute.
 
 ## Prerequisites
 
 * __An Azure subscription__ - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 * __Installed the Azure CLI 2.0 with version 0.3 or higher of the batchai module__ - see these [instructions](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
+* __Powershell__ (future work is to replicate with bash scripts)
 * __Azure storage account__ - Typically we would expect that a storage account and blob container already exist with the data stored (see below). If a storage account with data does not yet exist then see [How to create an Azure storage account](https://docs.microsoft.com/en-gb/azure/storage/common/storage-create-storage-account)
 
-## Azure Batch AI Fundamentals
-Under an Azure Resource Group, the Azure Batch account contains the following resources:
+## High-level AI architecture
 
-1. Workspaces
-2. Experiments
-3. Clusters
-4. File Servers
-5. Experiments
-6. Jobs
+A high-level holistic AI architecuture in Azure would look as follows:
 
-The image below shows a recommended approach for devising the resource hierarchy. The Batch AI workspace collects related training jobs under an experiment, and organizes all related Batch AI resources (clusters, file servers, experiments, jobs). The workspace helps to separate work belonging to different groups (e.g. Dev/Test/Production). For example, you might have a dev and a test workspace. You probably need only a limited number of workspaces per subscription. 
-Experiment - A collection of related jobs that can be queried and managed together. For example, use an experiment to group all jobs that are performed as part of a hyper-parameter tuning sweep. 
+![](00_doc/img/batchai_flow.png?raw=true "Batch AI architecture")
 
-![](img/batchai_hierachy.png?raw=true "Batch AI Resource Hierarchy")
+where the workflow flow is as follows:
 
-Whilst NFS and local storage on the compute nodes will be the optimized method for deep-learning training due to data locality, often unstructured data (images, video, sound, text) is stored in a data lake (Azure Blob storage). Typically the extra performance from NFS/local storage is not enough to compensate for the cost of data movement from the data lake to NFS/local storage.
+1. The data engineer:
+    * ingests the unstructured data into the data lake (Azure blob store) landing directory
+    * prepares the full dataset into the correct folder structure for training on job service
+    * prepares a sample of the data into the correct folder structure for training on a local machine
+2. The ML practitioner:
+    * downloads the sample from Azure Blob (using CLI or Azure Storage Explorer)
+    * develops skeleton code in their favourite editor and debug locally
+    * submits the code to the deep-learning job service (GPU) and receives back the artifacts (e.g. models(.
+        * repeats until model is ready for production
+3. The developer takes the deep-learning code and builds an AI pipeline in VSTS that:
+    * trains the model
+    * serves the model into an autoscale Kubernetes cluster (REST API endpoint) using Azure ML (see example [here](https://docs.microsoft.com/en-us/azure/machine-learning/desktop-workbench/model-management-service-deploy))
+    * integrates the model into the application using the REST API endpoint
 
-Therefore, a very high level architecture is:
+In this tutorial we focus on the setting up the Deep-Learning Job Service and how the ML practitioner interacts with it.
 
-![](img/batchai_flow.png?raw=true "Batch AI architecture")
+## Documentation and code
 
-The workflow is as follows:
+Often organisations have a dedicated team responsible for implementing cloud based services that are then consumed by internal customers. Therefore, we have split the documentation and code into:
 
-1. Unstructured data is ingested into Azure blob store. We recommend using the follow directory structure:
-```
-landing
-│   README.md
-│   file001.txt    
-│
-└───folder1
-│   │   file011.txt
-│   │   file012.txt
-│   │
-│   └───subfolder1
-│       │   file111.txt
-│       │   file112.txt
-│       │   ...
-│   
-└───folder2
-    │   file021.txt
-    │   file022.txt
-```
-  
+* [Cloud Administrator Guide](00_doc/cloud_admin_doc.md): Setting up a deep-learning job service with Azure Batch AI
+* [ML Practitioner Guide](00_doc/ml_practitioner_doc.md): Submitting deep-learning jobs
 
-2. 
+This allows us to tailor the documentation for each persona.
+
