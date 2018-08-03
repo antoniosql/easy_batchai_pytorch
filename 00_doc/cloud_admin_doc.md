@@ -56,7 +56,7 @@ Other settings that have been provided with 'good defaults' for a sandbox enviro
 * `$WORKSPACE_NAME` - the name of the Batch AI workspace. We have set this to be called `dev`.
 * `$VM_TYPE` - the size of the VM. We have set this to be an NC6 Azure VM (1 NVIDIA Tesla K80 GPU card), please consult [this](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu) guide to find a more appropriate GPU-based VM.
 * `$VM_PRIORITY` - this can be either "lowpriority" or "dedicated". For this sandbox environment we have set "lowpriority" - please consult [this](https://docs.microsoft.com/en-us/azure/batch/batch-low-pri-vms) guide to understand the differences and when to use which type.
-* `$MAX_NODES` - the GPU cluster will auto-scale based on the queue of jobs. For this sandbox we have defaulted on 1 node - if there are many users we would recommend increasing the maximum number of nodes to the number of users.
+* `$MAX_NODES` - the GPU cluster will auto-scale based on the queue of jobs. For this sandbox we have defaulted on 1 node - if there are many users we would recommend increasing the maximum number of nodes to the estimated number of concurrent users.
 * `$FILE_SHARE_NAME` - this is the name of the fileshare for storing logs and scripts.
 * `$FILE_SHARE_MNT` - the mount point is given a special environment variable called `$AZ_BATCHAI_MOUNT_ROOT` that is accessible on the nodes. Therefore, users can point to the file share with `$AZ_BATCHAI_MOUNT_ROOT/FILE_SHARE_MNT` e.g. in our case the mount point for the logs would be `$AZ_BATCHAI_MOUNT_ROOT/logs`
 * `$BLOB_MNT` - The mount point on the nodes for the blob storage container. This would be `$AZ_BATCHAI_MOUNT_ROOT/BLOB_MNT` or in our case `$AZ_BATCHAI_MOUNT_ROOT/datalake`
