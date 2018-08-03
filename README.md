@@ -12,7 +12,7 @@ The purpose of this tutorial is to demonstrate how an ML practitioner can develo
 * __Auto-scales__ with the number of jobs submitted.
 * Supports __any framework__ - Tensorflow, PyTorch, CNTK, Chainer and more.
 * Supports __distributed deep-learning__ (multi-node, multi-gpu) with Horovod.
-* Supports Azure low-priority VMs, which provide an 80% discount on the compute.
+* Supports Azure low-priority VMs, which provide a significant discount on the compute.
 
 ## Prerequisites
 

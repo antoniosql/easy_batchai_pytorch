@@ -68,7 +68,7 @@ Once we are happy with our code running on a small scale (i.e. 1 epoch or a smal
 
 ## Submitting a job
 
-In this section we demonstrate how to submit a job to the deep-learning service.
+In this section we demonstrate how to submit a job to the deep-learning service. Before doing so, we run through some of the basics regarding Batch AI.
 
 ### Understanding Batch AI resources
 
