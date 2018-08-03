@@ -117,9 +117,7 @@ You should populate this with the information provided to you by your cloud admi
 
 As we are not using Horovod, we have set the maxNodes to 1.
 
-The `persistCluster` parameter can be `True` or `False`. When this is set to `False` the script will spin up the cluster (approx 5mins), run the job and resize the cluster to 0. If you intend to iterate on a model (e.g. change learning rate or momentum) then we would recommend setting `persistCluster` to `True` - this will keep the cluster up after your first job submission and will reduce the latency of further submissions because there is no need to spin up compute resources.
-
-__REMEMBER: You should pause the cluster (i.e. resize to 0) when you have finished. We have created a 02_PauseCluster.ps1, which does exactly that__
+The `persistCluster` parameter can be `True` or `False`. When this is set to `False` the script will spin up the cluster (approx 5mins), run the job and resize the cluster to 0. If you intend to iterate on a model (e.g. change learning rate or momentum) then we would recommend setting `persistCluster` to `True` - this will keep the cluster up after your first job submission and will reduce the latency of further submissions because there is no need to spin up compute resources. However, you should remember to pause the cluster (i.e. resize to 0) when you have finished. We have created a 02_PauseCluster.ps1, which does exactly that.
 
 The job.json file contains the parameters for the job:
 
