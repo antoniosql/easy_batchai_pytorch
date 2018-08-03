@@ -40,7 +40,7 @@ where the workflow is as follows:
 2. The ML practitioner:
     * downloads the sample from Azure Blob (using CLI or Azure Storage Explorer)
     * develops skeleton code in their favourite editor and debug locally
-    * submits the code to the deep-learning job service (GPU) and receives back the artifacts (e.g. models(.
+    * submits the code to the deep-learning job service (GPU) and receives back the artifacts (e.g. models).
         * repeats until model is ready for production
 3. The developer takes the deep-learning code and builds an AI pipeline in VSTS that:
     * trains the model
