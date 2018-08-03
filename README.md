@@ -1,5 +1,7 @@
 # A deep-learning job service with Azure Batch AI
 
+<img src="00_doc/img/batchai_logo.jpg" alt="Batch AI logo" width="200px" align="middle"/>
+
 An ML practitioner often starts coding a new deep-learning project locally on a laptop or workstation using their favourite frameworks (PyTorch, TensorFlow, CNTK, etc) and tools (PyCharm, VS Code/Studio, Jupyter). However, training deep-learning models is a compute intensive task that can take a long time on a CPU machine. This bottleneck often frustrates the ML practitioner from iterating quickly on the network architecture and hyper-parameters. In order to achieve reasonable training times for deep-learning networks a GPU machine - and for very deep networks - a cluster of GPU machines is required. With this in mind the ML practitioner could use an on-prem/cloud GPU VM to scale the job, however:
 
 * the VM needs to be set-up and configured with the appropriate tools and frameworks
