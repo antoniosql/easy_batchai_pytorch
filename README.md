@@ -31,7 +31,7 @@ where the workflow flow is as follows:
 
 1. The data engineer:
     * ingests the unstructured data into the data lake (Azure blob store) landing directory
-    * prepares the full dataset into the correct folder structure for training on job service
+    * prepares the full dataset into the correct folder structure (e.g. PyTorch/Tensorflow structure) for training on job service
     * prepares a sample of the data into the correct folder structure for training on a local machine
 2. The ML practitioner:
     * downloads the sample from Azure Blob (using CLI or Azure Storage Explorer)

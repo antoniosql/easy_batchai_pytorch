@@ -54,7 +54,7 @@ Using your favourite editor:
 3. The PyTorchTransferLearning.py program expects 3 parameters:
     * ```--input_dir``` the directory path where the images are contained e.g. PATH/hymenoptera_data
     * ```--output_dir``` where the artefacts of the training e.g. models get stored
-    * ```--epochs`` the number of epochs to run
+    * ```--epochs``` the number of epochs to run
 
 In Visual Studio we can include the parameters in the project properties (right-click on project and select Properties:
 
