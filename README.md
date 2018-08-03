@@ -31,7 +31,7 @@ A high-level holistic AI architecture in Azure would look as follows:
 
 ![](00_doc/img/batchai_flow.png?raw=true "Batch AI architecture")
 
-where the workflow flow is as follows:
+where the workflow is as follows:
 
 1. The data engineer:
     * ingests the unstructured data into the data lake (Azure blob store) landing directory
