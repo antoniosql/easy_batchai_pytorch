@@ -1,6 +1,8 @@
-# Setting up the deep-learning service
+# Cloud Administrator Guide: Setting up the deep-learning service
 
-In order to accelerate setting up a deep-learning job service using Batch AI we have provided a PowerShell script called [00_CreateWorkspace.ps1](../cloud_admin_scripts/00_CreateWorkspace.ps1) that will provision a __sandbox environment to test and getting a better understanding of how Batch AI can be leverage to create such a service__.
+In order to accelerate setting up a deep-learning job service using Batch AI we have provided a PowerShell script called [00_CreateWorkspace.ps1](../cloud_admin_scripts/00_CreateWorkspace.ps1) that will provision a __sandbox environment__. 
+
+The purpose of this sandbox environment is to get a better understanding of how Batch AI can be leverage to create a deep-learning job service.
 
 The script is very simple:
 
@@ -59,3 +61,13 @@ Other settings that have been provided with 'good defaults' for a sandbox enviro
 * `$FILE_SHARE_MNT` - the mount point is given a special environment variable called `$AZ_BATCHAI_MOUNT_ROOT` that is accessible on the nodes. Therefore, users can point to the file share with `$AZ_BATCHAI_MOUNT_ROOT/FILE_SHARE_MNT` e.g. in our case the mount point for the logs would be `$AZ_BATCHAI_MOUNT_ROOT/logs`
 * `$BLOB_MNT` - The mount point on the nodes for the blob storage container. This would be `$AZ_BATCHAI_MOUNT_ROOT/BLOB_MNT` or in our case `$AZ_BATCHAI_MOUNT_ROOT/datalake`
 * `$SCRIPTS_DIR_NAME` - the directory name for the scripts on the file share. Note that when mounted on the nodes, this would look like `$AZ_BATCHAI_MOUNT_ROOT/FILE_SHARE_MNT/SCRIPTS_DIR_NAME` or in our case `$AZ_BATCHAI_MOUNT_ROOT/logs/scripts`
+
+## Passing details to the ML Practitioner
+You should pass on to the ML practitioner the following information:
+
+* The Azure resource group name
+* The Batch AI workspace name
+* The storage account name
+* The storage account container name (this is the data lake that will host the unstructured data)
+
+This information will allow them to submit jobs to the service you have just created.
