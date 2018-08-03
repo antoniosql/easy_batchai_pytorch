@@ -166,7 +166,7 @@ This is because it takes a few minutes to provision the backend cluster (<5mins)
 
 Once the job has finished the model and log files are downloaded into your local project directory. Moreover - assuming you have not persisted the cluster - the compute resources on the backend will scale down to 0.
 
-If you decided to persist the cluster then remember to run 02_PauseCluster.ps1 to resize the cluster back to 0.
+If you decided to persist the cluster then remember to run 02_PauseCluster.ps1 to resize the cluster back to 0 when you have finished.
 
 #### Validating the model
 We have provided a [jupyter notebook](../example_project/validate_model.ipynb) that imports the model built on the GPU cluster and tests the model on some local images (remember the model gets downloaded to the local machine as part of the job submission script). You will need to update the following variables:
